@@ -19,14 +19,54 @@ JSP 요소
 1. JSP 지시자, JSP Directive
 	- page 지시자
 	- include 지시자
+		- <%@ include file="경로" %>
+		- 특정 JSP/HTML 페이지를 다른 JSP 페이지의 일부 영역에 삽입하는 기술
+		- 조각 페이지
+		- <iframe> 태그와 유사
+		- 여러 페이지에서 반복되는 내용을 조각 페이지로 만들어서 재사용하기 위해서 사용!
+		
 	- taglib 지시자
 
 2. 스크립트 요소, Scripting Elements
 	 - 스크립틀릿
+	 	- Scriptlet = Script + Applet
+	 	- <% %>
+	 	- 이 영역은 자바 영역이다.
+	 	- 비즈니스 코드 작성 > 데이터 처리 or 동적 클라이언트 조작
+	 	
 	 - 익스프레션
+	 	- 자바의 값을 HTML 문서에 출력
+	 	- <%= 값 %>
+	 	
 	 - 선언부
  
  3. 액션 태그, Action Tags
 	 - 기본 액션 태그
 	 - 확장 액션 태그
 	 - 사용자 정의 액션 태그
+	 
+
+JSP 내장 객체, JSP Implicit Object
+	- 개발자가 직접 생성하는 객체가 아니라, JSP가 미리 만들어서 제공하는 객체(톰캣) 
+	- 예약어 제공
+	- 서블릿에도 존재함 > 예약어(X), 직접 생성 or 매개 변수
+	- request, response, session, pageContext, out, application, config, page, exception
+	- request, response, session, pageContext > out, application > config, page, exception
+	
+	- request, session, pageContext, application
+	> 객체 내부에 사용자 데이터를 관리하는 저장소를 가진다.(***)
+	> setAttribute(key, value), getAttribute(key)
+	
+
+1. request
+	- 클라이언트 -> (행동) -> 서버
+	a. 전송된 데이터 가져오기 (*****)
+	b. 전송된 데이터 인코딩 (***)	
+	c. 요청에 관련된 정보 가져오기
+	
+	
+	
+	
+	
+	 
+	 
