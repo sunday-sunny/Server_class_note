@@ -9,3 +9,4 @@
 직접 경로를 넣는게 아니라 request.getContextPath()를 넣어 관리한다. -->
 <script src="<%= request.getContextPath() %>/asset/js/jquery-1.12.4.js"></script>
 <script src="<%= request.getContextPath() %>/asset/js/bootstrap.js"></script>
+<script src="<%= request.getContextPath() %>/asset/js/cookie.js"></script>
