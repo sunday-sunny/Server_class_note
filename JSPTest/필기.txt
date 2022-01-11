@@ -131,6 +131,71 @@ JDBC -> Java Database Connectivity
 						
 	- webapp > address > "asset" 폴더 생성
 						> "main.css"
+						
+						
+						
+						
+웹보안
+- 로그인, 로그아웃
+- 현재 접속자가 해당 사이트의 구성원인지 확인하고 특정 행위에 대한 허가를 하는 작업
+- 세션 or 쿠키 > 인증(로그인) > 인증 티켓 발급 > 특정 행위 허가 유무 판단
+
+
+1. 인증, Authentication
+	- 현재 접속자가 해당 사이트의 구성원인지 확인
+
+
+2. 허가, Authorization
+	- 특정 행위에 대한 허가를 하는 작업
+
+- webapp > "auth" 폴더 생성
+- webapp > auth > "index.jsp" 초기화면
+				> "login.jsp" 로그인 폼 페이지
+				> "loginok.jsp" 로그인 처리 페이지 > 인증 작업
+				> "logout.jsp" 로그아웃 페이지
+				> "member.jsp" 회원전용 페이지 > 허가 작업
+				> "admin.jsp" 관리자 전용 페이지 > 허가 작업
+				
+				
+
+JSP Model
+1. 여태까지의 방식 > JSP Model 1
+	- HTML + CSS + JavaScript + Java + Servlet + JSP = *.jsp
+	
+2. 이후의 방식 > JSP Model 2(= MVC 디자인 패턴을 따와서 만든 모델)
+
+
+
+업무 코드(페이지, 파일) = 수 많은 성격의 코드 집합
+
+
+MVC 디자인 패턴
+- Model			> 데이터 코드 담당
+- View			> 출력 코드 담당
+- Controller	> 통제(비즈니스) 코드 담당
+
+
+Servlet
+- 자바기반 + 웹 추가
+- 자바 작성 O, 웹 작성 X
+
+JSP
+- 웹 기반 + 자바 추가
+- 웹 작성 O, 자바 작성 X 
+
+Servelt + JSP -> MVC 디자인 패턴 구현
+- 자바 작성	> Servlet 작성
+- 웹 작성	> JSP 작성
+
+고객이 페이지 주문 > Servlet 알바생 > 페이지 제작
+고객이 페이지 주문 > JSP 알바생		> 페이지 제작
+고객이 페이지 주문 > Servlet 알바생 + JSP 알바생 > 페이지 제작
+- com.test.mvc
+
+
+
+			
+				
 
 
 

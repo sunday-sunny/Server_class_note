@@ -99,7 +99,7 @@
 			<!-- editok.jsp에 넘기기 위한 seq hidden으로 넘김 -->
 			<input type="hidden" name ="seq" value="<%= seq %>">
 					
-		</form>
+		</form>   
 		
 	
 	</div>
