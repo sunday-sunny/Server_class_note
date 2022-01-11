@@ -190,11 +190,23 @@ Servelt + JSP -> MVC 디자인 패턴 구현
 고객이 페이지 주문 > Servlet 알바생 > 페이지 제작
 고객이 페이지 주문 > JSP 알바생		> 페이지 제작
 고객이 페이지 주문 > Servlet 알바생 + JSP 알바생 > 페이지 제작
-- com.test.mvc
 
+Hello world!
+- com.test.mvc > Hello.java
+- webapp > "mvc" > hello.jsp 
 
 
 			
+JSP Model 2 + EL + JSTL
+- com.test.mvc > "Address.java"
+				> "AddressDAO.java"
+				> "AddressDTO.java"
+				> "DBUtil.java" 복사
+				
+- webapp > mvc > "address.jsp"
+
+- com.test.mvc > "EL.java"
+- webapp > mvc > "el.jsp"
 				
 
 
