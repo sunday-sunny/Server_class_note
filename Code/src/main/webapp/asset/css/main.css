@@ -1,0 +1,68 @@
+/* main.css */
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+body, p, div, span, a, table, th, td, input, textarea, option, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, small, button {
+	font-family : 'Pretendard-Regular';
+}
+
+
+body {
+	background-color: #eee;
+}
+
+/* Header */
+.header {
+	height : 100px;
+	border-bottom : 1px solid #999;
+	padding : 20px;
+}
+
+.header .title {
+	margin : 0;
+	padding : 0;
+}
+
+.header .menu {
+	float : right;
+	list-style :none;
+}
+
+.header .menu li {
+	float : left;
+	margin : 0 10px;
+	cursor : pointer;
+}
+
+.header .menu li:hover {
+	color : cornflowerblue;
+}
+
+
+.content {
+	height : 500px;
+	padding : 20px;
+}
+
+.main {
+	width : 800px;
+	height : 100vh; /* 눈에 보이는 화면 전체를 꽉 채워라. 백분율 */
+	background-color : #fff;
+	border-left : 1px solid #999;
+	border-right : 1px solid #999;
+	margin : 0px auto;
+	padding : 20px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.footer {
+	height : 50px;
+	border-top : 1px solid #999;
+	padding : 20px;
+}
