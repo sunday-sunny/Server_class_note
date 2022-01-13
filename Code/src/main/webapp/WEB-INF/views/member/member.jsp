@@ -62,6 +62,27 @@
 					<input type="button" value="로그인" 
 						class="btn btn-default" 
 						onclick="location.href='/code/member/login.do';">
+					<hr>
+					
+					<form method="POST" action="/code/member/loginok.do">
+						<input type="hidden" name="id" value="hong">
+						<input type="hidden" name="pw" value="1111">
+						<input type="submit" value="홍길동" class="btn btn-default">
+					</form>	
+					
+					<form method="POST" action="/code/member/loginok.do">
+						<input type="hidden" name="id" value="test">
+						<input type="hidden" name="pw" value="1111">
+						<input type="submit" value="테스트" class="btn btn-default">
+					</form>
+						
+					<form method="POST" action="/code/member/loginok.do">
+						<input type="hidden" name="id" value="admin">
+						<input type="hidden" name="pw" value="1111">
+						<input type="submit" value="관리자" class="btn btn-default">
+					</form>	
+						
+						
 					</c:if>
 					
 				</div>

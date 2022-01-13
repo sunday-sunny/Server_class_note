@@ -30,14 +30,49 @@ create table tblBoard (
 
 create sequence seqBoard;
 
+
+
 insert into tblBoard(seq, id, subject, content, regdate, readcount, userip)
     values (seqBoard.nextVal, 'hong', '게시판입니다.', '내용입니다.', default, default, '127.0.0.1');
 
+
 select * from tblBoard;
+delete from tblBoard;
 
 update tblBoard set subject = '제목', content = '내용' where seq = 1;
 
 commit;
+
+-- 게시판 뷰
+create or replace view vwBoard
+as
+select seq, subject, id, (select name from tblUser where id = tblBoard.id) as name, regdate, readcount,
+    (sysdate - regdate) as isnew
+from tblBoard ;
+
+select * from vwBoard;
+
+
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '게시판입니다.', '내용입니다.', to_date('2022-01-10 12:30:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '안녕하세요. 홍길동입니다..', '내용입니다.', to_date('2022-01-10 18:45:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');    
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '반갑습니다~~', '내용입니다.', to_date('2022-01-11 06:30:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '날씨가 참 좋습니다.', '내용입니다.', to_date('2022-01-12 11:10:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '점심 시간입니다. 밥먹자~.', '내용입니다.', to_date('2022-01-12 12:50:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '게시만 만드는 중입니다..', '내용입니다.', to_date('2022-01-13 09:30:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1');
+insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
+    values (seqBoard.nextVal, 'hong', '게시만 계속 만드는 중입니다..', '내용입니다.', to_date('2022-01-13 11:20:00', 'yyyy-mm-dd hh24:mi:ss'), default, '127.0.0.1
+    
+    
+commit;
+
+
+select tblBoard.*, (select name from tblUser where id = tblBoard.id) as name from tblBoard;
 
 
 
