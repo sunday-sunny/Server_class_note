@@ -59,4 +59,29 @@ public class MemberDAO {
 		
 		return null;
 	}
+
+	// Member.java > 아이디를 줄테니 게시물 수를 주세요~
+	public int getCount(String id) {
+		
+		try {
+			
+			String sql = "select count(*) as cnt from tblBoard where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery(); 
+
+			if(rs.next())
+				return rs.getInt("cnt");
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getCount()");
+			e.printStackTrace();
+			
+		}
+		
+		
+		return 0;
+	}
 }
