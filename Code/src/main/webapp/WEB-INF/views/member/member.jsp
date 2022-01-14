@@ -46,7 +46,14 @@
 					<!-- if state is login -->
 					<c:if test="${not empty id}">
 					<div class="info">
-						<span class="label label-primary">lv${lv}</span> ${id}(${name})
+						<div>
+							<span class="label label-primary">Lv${lv}</span> ${id}(${name})
+						</div>
+						<div>
+							<div style="margin-top:10px;">작성한 게시물 수 : 5개</div>
+							<div>작성한 댓글 수 : 5개</div>
+						</div>
+						
 					</div>
 					
 					<!-- Logout Btn -->

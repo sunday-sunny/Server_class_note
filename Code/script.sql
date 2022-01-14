@@ -47,7 +47,8 @@ commit;
 create or replace view vwBoard
 as
 select seq, subject, id, (select name from tblUser where id = tblBoard.id) as name, regdate, readcount,
-    (sysdate - regdate) as isnew
+    (sysdate - regdate) as isnew,
+    content
 from tblBoard ;
 
 select * from vwBoard;

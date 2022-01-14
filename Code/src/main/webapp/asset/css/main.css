@@ -67,7 +67,7 @@ html {
 
 .main {
 	width : 800px;
-	height : 100vh; /* 눈에 보이는 화면 전체를 꽉 채워라. 백분율 */
+	min-height : 500px; /* 100vh : 눈에 보이는 화면 전체를 꽉 채워라. 백분율 */
 	background-color : #fff;
 	border-left : 1px solid #999;
 	border-right : 1px solid #999;

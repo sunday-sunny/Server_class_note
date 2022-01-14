@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.test.jdbc.DBUtil;
 
@@ -54,11 +55,18 @@ public class BoardDAO {
 		return 0;
 	}
 
-	public ArrayList<BoardDTO> list() {
+	public ArrayList<BoardDTO> list(HashMap<String, String> map) {
 		
 		try {
-		
-			String sql = "select * from vwBoard order by seq desc";
+			
+			String where = "";
+			if(map.get("searchmode").equals("y")) {
+				where = String.format("where %s like '%%%s%%'"
+														, map.get("column")
+														, map.get("word").replace("'", "''"));
+			}
+			
+			String sql = String.format("select * from vwBoard %s order by seq desc", where);
 			rs = stat.executeQuery(sql);
 			
 			ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
