@@ -48,8 +48,15 @@
 				<input type="button" value="돌아가기"
 					class="btn btn-default"
 					onclick="location.href='/code/board/list.do';">
-				<c:if test="${not empty id }">
-				<input type="submit" value="글쓰기" class="btn btn-primary">	
+				
+				<c:if test="${not empty id && dto.id == id}">
+				<input type="button" value="수정하기"
+					class="btn btn-primary"
+					onclick="location.href='/code/board/edit.do?seq=${dto.seq}';">
+				
+				<input type="button" value="삭제하기"
+					class="btn btn-danger"
+					onclick="location.href='/code/board/del.do?seq=${dto.seq}';">
 				</c:if>
 			</div>
 			
