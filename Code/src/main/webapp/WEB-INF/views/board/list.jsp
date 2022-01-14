@@ -74,12 +74,18 @@
 							<td>
 								<input type="submit" value="검색하기" class="btn btn-default">
 							</td>
+							<c:if test="${not empty id}">
+							<td>
+								<input type="button" value="내글보기" class="btn btn-default"
+								onclick="location.href='/code/board/list.do?column=name&word=${name}';">
+							</td>
+							</c:if>
 						</tr>
 					</table>
 				</form>
 			</div>
 
-
+			
 			<div class="btns">
 				<input type="button" value="목록보기" class="btn btn-default"
 					onclick="location.href='/code/board/list.do';">
