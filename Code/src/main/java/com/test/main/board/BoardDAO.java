@@ -145,6 +145,45 @@ public class BoardDAO {
 		
 	}
 	
+	// editok 서블릿이 DTO를 줄테니 수정해주세요~
+	public int edit(BoardDTO dto) {
+		
+		try {
+			
+			String sql = "update tblBoard set subject = ?, content = ? where seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getSubject()); 
+			pstat.setString(2, dto.getContent()); 
+			pstat.setString(3, dto.getSeq());  
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.edit()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	//
+	public int del(String seq) {
+		
+		try {
+			String sql = "delete from tblBoard where seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.del()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
 }
 
 
