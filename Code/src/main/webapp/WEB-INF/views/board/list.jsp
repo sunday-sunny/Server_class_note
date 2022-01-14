@@ -32,9 +32,13 @@
 				</tr>
 
 				<c:forEach items="${list}" var="dto">
-					<tr>
+					<c:choose>
+						<c:when test="${dto.readcount >= 10}"><tr class="info"></c:when>
+						<c:otherwise><tr></c:otherwise>
+					</c:choose>
 						<td>${dto.seq}</td>
-						<td><a href="/code/board/view.do?seq=${dto.seq}&column=${map.column}&word=${map.word}">${dto.subject}</a>
+						<td>
+							<a href="/code/board/view.do?seq=${dto.seq}&column=${map.column}&word=${map.word}">${dto.subject}</a>
 							<c:if test="${dto.isnew <= 1}">
 								<span class="label label-danger">new</span>
 							</c:if>
