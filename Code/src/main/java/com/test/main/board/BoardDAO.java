@@ -82,6 +82,8 @@ public class BoardDAO {
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setIsnew(rs.getDouble("isnew"));
 				
+				dto.setCommentcount(rs.getInt("commentcount"));
+				
 				list.add(dto);
 			}
 			

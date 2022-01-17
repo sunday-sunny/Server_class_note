@@ -48,7 +48,8 @@ create or replace view vwBoard
 as
 select seq, subject, id, (select name from tblUser where id = tblBoard.id) as name, regdate, readcount,
     (sysdate - regdate) as isnew,
-    content
+    content,
+    (select count(*) from tblComment where bseq = tblBoard.seq) as commentcount
 from tblBoard ;
 
 select * from vwBoard;
@@ -92,7 +93,7 @@ create sequence seqComment;
 insert into tblComment(seq, id, content, regdate, bseq) values (seqComment.nextVal, 'hong', '댓글입니다!', sysdate, 34);
 
 select * from tblComment where bseq = 34;
-select * from tblComment
+select * from tblComment;
 
 select tblComment.*, 
     (select name from tblUser where id = tblComment.id) as name from tblComment where bseq = 34;
