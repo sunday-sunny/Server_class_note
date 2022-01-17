@@ -50,9 +50,15 @@ select seq, subject, id, (select name from tblUser where id = tblBoard.id) as na
     (sysdate - regdate) as isnew,
     content,
     (select count(*) from tblComment where bseq = tblBoard.seq) as commentcount
-from tblBoard ;
+from tblBoard;
 
 select * from vwBoard;
+select count(*) from vwBoard;
+
+
+-- 페이징 작업
+select * from (select rownum as rnum, a.* from (select * from vwBoard order by seq desc) a)
+    where rnum between 1 and 5;
 
 
 insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)

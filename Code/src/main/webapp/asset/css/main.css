@@ -178,6 +178,11 @@ html {
 	text-align : center;
 }
 
+/* list.jsp > 페이지바 */
+.pagebar {
+	text-align : center;
+	margin-top : 20px;
+}
 
 
 

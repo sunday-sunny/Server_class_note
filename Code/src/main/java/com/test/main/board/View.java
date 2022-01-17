@@ -43,6 +43,7 @@ public class View extends HttpServlet {
 		
 		// 1.
 		String seq = req.getParameter("seq");
+		String page = req.getParameter("page");
 		
 		
 		// 2.
@@ -90,7 +91,8 @@ public class View extends HttpServlet {
 		req.setAttribute("word", word);
 		/* 댓글 */
 		req.setAttribute("clist", clist);
-		
+		/* 페이지 */
+		req.setAttribute("page", page);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/view.jsp");
 		dispatcher.forward(req, resp);

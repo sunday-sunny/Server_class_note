@@ -61,12 +61,12 @@ public class BoardDAO {
 			
 			String where = "";
 			if(map.get("searchmode").equals("y")) {
-				where = String.format("where %s like '%%%s%%'"
+				where = String.format("and %s like '%%%s%%'"
 														, map.get("column")
 														, map.get("word").replace("'", "''"));
 			}
 			
-			String sql = String.format("select * from vwBoard %s order by seq desc", where);
+			String sql = String.format("select * from (select rownum as rnum, a.* from (select * from vwBoard order by seq desc) a) where rnum between %s and %s %s order by seq desc", map.get("begin"), map.get("end"), where);
 			rs = stat.executeQuery(sql);
 			
 			ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -288,6 +288,37 @@ public class BoardDAO {
 			
 		}
 		
+	}
+	
+	
+	// List 서블릿이 게시물이 몇 개인지 알려주세요~
+	public int getTotalCount(HashMap<String, String> map) {
+		
+		try {
+			
+			String where = "";
+			if(map.get("searchmode").equals("y")) {
+				where = String.format("where %s like '%%%s%%'"
+														, map.get("column")
+														, map.get("word").replace("'", "''"));
+			}
+			
+			
+			String sql = "select count(*) as cnt from vwBoard " + where;
+			
+			rs = stat.executeQuery(sql);
+			
+			if(rs.next()) 
+				return rs.getInt("cnt");
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.getTotalCount()");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
 	}
 	
 }

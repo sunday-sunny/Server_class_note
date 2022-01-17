@@ -43,6 +43,37 @@ public class List extends HttpServlet {
 		
 		
 		
+		/*** 페이징 ***/
+		// list.do == list.do?page=1
+		// list.do?page=3
+		int nowPage = 0;		// 현재 페이지 번호 
+		int totalCount = 0;
+		int pageSize = 10;		// 한페이지당 출력할 게시물 수
+		int totalPage = 0;
+		int begin = 0;			// where 시작 위치
+		int end = 0;			// where 끝 위치
+		int n = 0;
+		int loop = 0;
+		int blockSize = 10;
+		
+		String page = req.getParameter("page");
+		
+		if(page == null || page == "") nowPage = 1;
+		else nowPage = Integer.parseInt(page);
+		
+		// nowPage > 현재 보게될 페이지 번호
+		// list.do?page=1 > where rnum between 1 and 10
+		// list do?page=2 > where rnum between 11 and 20
+		// list do?page=3 > where rnum between 21 and 30
+		begin = ((nowPage - 1) * pageSize) + 1;
+		end = begin + pageSize - 1;
+		
+		map.put("begin", begin + "");
+		map.put("end", end + "");
+		
+		
+		
+		
 		/*** 게시판, 게시물 목록 보기 기능 ***/
 		// 할일
 		// 1. DB작업 > select > DAO 위임
@@ -82,10 +113,68 @@ public class List extends HttpServlet {
 		session.setAttribute("readcount", "n");
 		
 		
+		// 페이지바
+		
+		// 총 게시물 수? > 163
+		// 총 페이지 수? > 163 / 10 = 16.3 > 17페이지
+		
+		totalCount = dao.getTotalCount(map); // 검색 기능 때문에 map을 넘김
+		totalPage = (int)Math.ceil((double)totalCount / pageSize);
+		
+		
+		String pagebar = "";
+		
+		// 페이지 번호 > 루프 > 링크 생성
+
+		
+		// 해당 범위 내 페이지를 볼 때는 항상 같은 페이지바
+		// list.do?page=1
+		// 1 2 3 4 5 6 7 8 9 10
+		
+		// list.do?page=11
+		// 11 12 13 14 15 16 17 18 19 20
+		
+		loop = 1; // 루프변수(while)
+		n = ((nowPage - 1) / blockSize) * blockSize + 1; // 페이지 번호
+
+		
+		pagebar += "<nav><ul class=\"pagination\">";
+		
+		// 이전 10페이지
+		if(n == 1)
+			pagebar += String.format("<li class='disabled'><a href='#!' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+		else
+			pagebar += String.format("<li><a href='/code/board/list.do?page=%d' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>", n-1);
+		
+		
+		// 페이지 btn 생성
+		while(!(loop > blockSize || n > totalPage)) {
+			if(n == nowPage)
+				pagebar += String.format("<li class='active'><a href='#!'>%d</a></li>", n);
+			else 
+				pagebar += String.format("<li><a href='/code/board/list.do?page=%d'>%d</a></li>", n, n);
+			
+			loop++;
+			n++;
+		}
+		
+
+		// 다음 10페이지
+		if(n > totalPage)
+			pagebar += String.format("<li class='disabled'><a href='#!' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
+		else
+			pagebar += String.format("<li><a href='/code/board/list.do?page=%d' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>", n);
+		
+		
+		pagebar += "</ul></nav>";
+		
+		
+		
 		// 2. 
 		req.setAttribute("list", list);
 		req.setAttribute("map", map);
-		
+		req.setAttribute("pagebar", pagebar);
+		req.setAttribute("nowPage", nowPage);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/list.jsp");
 		dispatcher.forward(req, resp);
