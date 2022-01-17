@@ -250,6 +250,44 @@ public class BoardDAO {
 		return null;
 	}
 	
+	// DelCommentOk 서블릿이 댓글 번호를 줄테니 삭제해주세요~
+	public int delComment(String seq) {
+		
+		try {
+			String sql = "delete from tblComment where seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			return pstat.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.delComment()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	// DelOk 서블릿이 부모 글번호를 줄테니 달린 댓글을 모두 삭제해주세요~
+	public void delCommentAll(String seq) {
+		
+		try {
+			String sql = "delete from tblComment where bseq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			pstat.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.delCommentAll()");
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
 }
 
 
