@@ -213,6 +213,43 @@ public class BoardDAO {
 		return 0;
 	}
 	
+	
+	// View 서블릿이 글번호를 줄테니 글에 달린 댓글 목록을 주세요~
+	public ArrayList<CommentDTO> listComment(String seq) {
+		
+		try {
+			String sql = "select tblComment.*, (select name from tblUser where id = tblComment.id) as name from tblComment where bseq = ? order by seq";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			rs = pstat.executeQuery();
+			
+			ArrayList<CommentDTO> clist = new ArrayList<CommentDTO>();
+			
+			while(rs.next()) {
+				// 레코드 1줄 > DTO 1개
+				CommentDTO dto = new CommentDTO();
+				dto.setSeq(rs.getString("seq"));
+				dto.setContent(rs.getString("content"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setBseq(rs.getString("bseq"));
+				
+				clist.add(dto);
+			}
+			
+			return clist;
+			
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.listComment()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }
 
 

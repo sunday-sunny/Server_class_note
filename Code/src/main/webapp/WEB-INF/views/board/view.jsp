@@ -62,6 +62,24 @@
 			
 			
 			<!-- 댓글 기능 -->
+			<!--  댓글 목록 테이블	-->		
+			<table class="table table-bordered comment">
+				<c:forEach items="${clist}" var="cdto">
+				<tr>
+					<td>
+						${cdto.content}
+						<small>${cdto.name}(${cdto.id}) ${cdto.regdate}</small></td>
+					<td>
+						<c:if test ="${cdto.id == id}">
+						<input type="button" value="삭제" 
+							class="btn btn-default"
+							onclick="location.href='/code/board/delcommnetok.do?seq=${cdto.seq}&bseq=${dto.seq}';">
+						</c:if>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+			
 			<!--  댓글 입력 폼 -->
 			<form method="POST" action="/code/board/addcommentok.do">
 				<table class="addcomment">
@@ -72,17 +90,6 @@
 				</table>
 				<input type="hidden" name="bseq" value="${dto.seq}">
 			</form>
-				
-							
-			<!--  댓글 목록 테이블	-->		
-			<table class="table table-bordered comment">
-				<tr>
-					<td>댓글 내용댓글 내용댓글 내용 <small>홍길동(hong) 2022-01-17 09:23:30</small></td>
-					<td>버튼</td>
-				</tr>
-			
-			
-			</table>
 			
 			
 		</section>

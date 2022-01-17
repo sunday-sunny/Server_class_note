@@ -141,9 +141,9 @@ html {
 .addcomment {
 	width : 600px;
 	margin : 0 auto;
+	margin-top : 15px;
+	margin-bottom : 100px;
 	
-	margin-top : 35px;
-	margin-bottom : 20px;
 }
 
 .addcomment textarea {
@@ -155,7 +155,8 @@ html {
 .table.comment {
 	width : 600px;
 	margin : 20px auto;
-	margin-bottom : 100px;
+	margin-top : 15px;
+	margin-bottom : 20px;
 }
 
 .table.comment td:nth-child(1) {

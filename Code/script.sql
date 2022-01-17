@@ -80,13 +80,29 @@ select tblBoard.*, (select name from tblUser where id = tblBoard.id) as name fro
 create table tblComment (
     seq number primary key,                             -- 댓글번호(PK)
     id varchar2(30) not null references tblUser(id),    -- 작성자(id)
-    content varchar(2) not null,                        -- 댓글내용
-    regdate date default sysdate not null               -- 작성날짜
+    content varchar2(1000) not null,                        -- 댓글내용
+    regdate date default sysdate not null,               -- 작성날짜
+    bseq number not null references tblBoard(seq)
 );
 
+drop table tblComment;
+
+create sequence seqComment;
+
+insert into tblComment(seq, id, content, regdate, bseq) values (seqComment.nextVal, 'hong', '댓글입니다!', sysdate, 34);
+
+select * from tblComment where bseq = 34;
+select * from tblComment
+
+select tblComment.*, 
+    (select name from tblUser where id = tblComment.id) as name from tblComment where bseq = 34;
 
 
+update tblComment set content = '내용 수정' where seq = 2;
 
+delete from tblComment where seq = 2;
+
+commit;
 
 
 

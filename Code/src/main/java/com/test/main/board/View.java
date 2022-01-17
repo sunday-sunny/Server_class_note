@@ -1,6 +1,7 @@
 package com.test.main.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ public class View extends HttpServlet {
 		// 2. DB작업 > select > DAO 위임
 		// 2.3 조회수 증가
 		// 2.5 데이터 조작 (개행처리)
+		// 2.7 댓글 가져오기
 		// 3. 반환값 전달 + JSP 호출하기
 		
 		// 1.
@@ -73,10 +75,21 @@ public class View extends HttpServlet {
 			dto.setContent(dto.getContent().replace(word, "<span style='background-color:mistyrose;color:tomato;'>" + word + "</span>"));
 		}
 		
+		
+		// 2.7
+		ArrayList<CommentDTO> clist = dao.listComment(seq);
+		for(CommentDTO cdto : clist) {
+			cdto.setContent(cdto.getContent().replace("\r\n", "<br>"));
+		}
+		
+		
 		// 3.
 		req.setAttribute("dto", dto);
+		/* 검색 */
 		req.setAttribute("column", column);
 		req.setAttribute("word", word);
+		/* 댓글 */
+		req.setAttribute("clist", clist);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/view.jsp");
