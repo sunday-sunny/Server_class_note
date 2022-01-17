@@ -77,4 +77,31 @@ select tblBoard.*, (select name from tblUser where id = tblBoard.id) as name fro
 
 
 
+create table tblComment (
+    seq number primary key,                             -- 댓글번호(PK)
+    id varchar2(30) not null references tblUser(id),    -- 작성자(id)
+    content varchar(2) not null,                        -- 댓글내용
+    regdate date default sysdate not null               -- 작성날짜
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

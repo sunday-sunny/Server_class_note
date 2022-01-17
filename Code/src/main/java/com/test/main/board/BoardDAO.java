@@ -192,6 +192,27 @@ public class BoardDAO {
 		return 0;
 	}
 	
+	// AddCommentOk 서블릿이 CommentDTO를 줄테니 insert 해주세요
+	public int addComment(CommentDTO cdto) {
+		
+		try {
+			String sql ="insert into tblComment(seq, id, content, regdate, bseq) values (seqComment.nextVal, ?, ?, sysdate, ?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, cdto.getId());
+			pstat.setString(2, cdto.getContent());
+			pstat.setString(3, cdto.getBseq());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("BoardDAO.addComment()");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
 }
 
 

@@ -60,6 +60,31 @@
 				</c:if>
 			</div>
 			
+			
+			<!-- 댓글 기능 -->
+			<!--  댓글 입력 폼 -->
+			<form method="POST" action="/code/board/addcommentok.do">
+				<table class="addcomment">
+					<tr>
+						<td><textarea name="content" class="form-control" required></textarea></td>
+						<td><input type="submit" value="댓글쓰기" class="btn btn-primary"></td>
+					</tr>
+				</table>
+				<input type="hidden" name="bseq" value="${dto.seq}">
+			</form>
+				
+							
+			<!--  댓글 목록 테이블	-->		
+			<table class="table table-bordered comment">
+				<tr>
+					<td>댓글 내용댓글 내용댓글 내용 <small>홍길동(hong) 2022-01-17 09:23:30</small></td>
+					<td>버튼</td>
+				</tr>
+			
+			
+			</table>
+			
+			
 		</section>
 		<%@include file="/WEB-INF/views/inc/footer.jsp" %>
 	</main>	

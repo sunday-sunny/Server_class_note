@@ -61,6 +61,8 @@
 			- DelOk.java(S) > 삭제하기(처리)
 			- BoardDAO.java > DAO
 			- BoardDTO.java > DTO
+			- AddCommentOk.java(S) > 댓글쓰기(처리) > *.jsp는 안 만들고 진행!
+			- CommentDTO.java > DTO > * DAO 안 만들고 진행! > board에 종속되는 친구라
 		3. com.test.main.member
 			- Member.java(S) > 초기페이지
 			- Login.java(S) > 로그인(폼)
