@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.test.jdbc.DBUtil;
 
@@ -105,5 +106,42 @@ public class MemberDAO {
 		}
 		
 		return 0;
+	}
+	
+	// 
+	public ArrayList<MemberDTO> list() {
+		
+		try {
+			String sql = "select \r\n"
+					+ "    tblUser.*, \r\n"
+					+ "    (select count(*) from tblBoard where id = tblUser.id) as count, \r\n"
+					+ "    (select count(*) from tblComment where id = tblUser.id) as ccount \r\n"
+					+ "from tblUser \r\n"
+					+ "order by lv desc, name asc";
+			
+			ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+			rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setLv(rs.getString("lv"));
+				dto.setCount(rs.getInt("count"));
+				dto.setCcount(rs.getInt("ccount"));
+				
+				list.add(dto);
+			}
+			return list;
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.list()");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 }

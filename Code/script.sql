@@ -151,3 +151,18 @@ delete from tblBoard where thread = -2;
 
 commit;
 
+
+
+
+
+select 
+    tblUser.*, 
+    (select count(*) from tblBoard where id = tblUser.id) as count, 
+    (select count(*) from tblComment where id = tblUser.id) as ccount 
+from tblUser 
+order by lv desc, name asc;
+
+
+
+
+
