@@ -12,12 +12,27 @@ public class BoardDTO {
 	private int readcount;
 	private String userip;
 	
-	private String name; // 작성자 이름
-	private double isnew; // 새글 유무
+	private String name;		// 작성자 이름
+	private double isnew;		// 새글 유무
 	
-	private int commentcount; // 댓글 수
+	private int commentcount;	// 댓글 수
+	
+	private int thread; 		//계층형
+	private int depth;
 
 	
+	public int getThread() {
+		return thread;
+	}
+	public void setThread(int thread) {
+		this.thread = thread;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
 	public int getCommentcount() {
 		return commentcount;
 	}

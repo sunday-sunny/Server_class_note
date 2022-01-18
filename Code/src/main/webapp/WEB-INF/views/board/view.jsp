@@ -50,6 +50,10 @@
 					onclick="location.href='/code/board/list.do?column=${column}&word=${word}&page=${page}';">
 				
 				<c:if test="${not empty id && dto.id == id}">
+				<input type="button" value="답변쓰기"
+					class="btn btn-success"
+					onclick="location.href='/code/board/add.do?reply=1&thread=${dto.thread}&depth=${dto.depth}';">
+					
 				<input type="button" value="수정하기"
 					class="btn btn-primary"
 					onclick="location.href='/code/board/edit.do?seq=${dto.seq}';">
