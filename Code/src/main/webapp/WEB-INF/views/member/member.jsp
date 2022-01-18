@@ -51,7 +51,7 @@
 						</div>
 						<div>
 							<div style="margin-top:10px;">작성한 게시물 수 : ${count}개</div>
-							<div>작성한 댓글 수 : 0개</div>
+							<div>작성한 댓글 수 : ${ccount}개</div>
 						</div>
 						
 					</div>

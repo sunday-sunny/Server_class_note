@@ -81,6 +81,28 @@ public class MemberDAO {
 			
 		}
 		
+		return 0;
+	}
+
+	// member.java > 
+	public int getCcount(String id) {
+		
+		try {
+			
+			String sql = "select count(*) as cnt from tblComment where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			rs = pstat.executeQuery(); 
+
+			if(rs.next())
+				return rs.getInt("cnt");
+			
+			
+		} catch (Exception e) {
+			System.out.println("MemberDAO.getCount()");
+			e.printStackTrace();
+		}
 		
 		return 0;
 	}
