@@ -47,10 +47,19 @@ commit;
 create or replace view vwBoard
 as
 select seq, subject, id, (select name from tblUser where id = tblBoard.id) as name, regdate, readcount,
-    (sysdate - regdate) as isnew
-from tblBoard ;
+    (sysdate - regdate) as isnew,
+    content,
+    (select count(*) from tblComment where bseq = tblBoard.seq) as commentcount,
+    thread, depth
+from tblBoard;
 
 select * from vwBoard;
+select count(*) from vwBoard;
+
+
+-- 페이징 작업
+select * from (select rownum as rnum, a.* from (select * from vwBoard order by seq desc) a)
+    where rnum between 1 and 5;
 
 
 insert into tblBoard (seq, id, subject, content, regdate, readcount, userip)
@@ -73,6 +82,86 @@ commit;
 
 
 select tblBoard.*, (select name from tblUser where id = tblBoard.id) as name from tblBoard;
+
+
+-- 댓글
+create table tblComment (
+    seq number primary key,                             -- 댓글번호(PK)
+    id varchar2(30) not null references tblUser(id),    -- 작성자(id)
+    content varchar2(1000) not null,                        -- 댓글내용
+    regdate date default sysdate not null,               -- 작성날짜
+    bseq number not null references tblBoard(seq)
+);
+
+drop table tblComment;
+
+create sequence seqComment;
+
+insert into tblComment(seq, id, content, regdate, bseq) values (seqComment.nextVal, 'hong', '댓글입니다!', sysdate, 34);
+
+select * from tblComment where bseq = 34;
+select * from tblComment;
+
+select tblComment.*, 
+    (select name from tblUser where id = tblComment.id) as name from tblComment where bseq = 34;
+
+
+update tblComment set content = '내용 수정' where seq = 2;
+
+delete from tblComment where seq = 2;
+
+commit;
+
+
+
+
+
+
+
+drop table tblComment;
+drop table tblBoard;
+
+-- 게시판 테이블
+create table tblBoard (
+    seq number primary key,                             -- 글번호(PK) 
+    id varchar2(30) not null references tblUser(id),    -- 작성자(FK)
+    subject varchar2(300) not null,                     -- 제목
+    content varchar2(2000) not null,                    -- 내용
+    regdate date default sysdate not null,              -- 작성시간
+    readcount number default 0 not null,                -- 조회수
+    userip varchar2(15) not null,                       -- 접속IP
+    thread number not null,                             -- 계층형 게시판
+    depth number not null                               -- 계층형 게시판
+);
+
+create sequence seqBoard;
+
+drop sequence seqBoard;
+
+
+-- 	- a. 현존하는 모든 게시물 중에 가장 큰 thread 값을 찾는다. 그 값에 + 1000을 한 값을 새글의 thread값으로 사용한다.
+select nvl(max(thread),0) from tblBoard;
+
+
+
+
+select * from tblBoard;
+
+delete from tblBoard where thread = -2;
+
+commit;
+
+
+
+
+
+select 
+    tblUser.*, 
+    (select count(*) from tblBoard where id = tblUser.id) as count, 
+    (select count(*) from tblComment where id = tblUser.id) as ccount 
+from tblUser 
+order by lv desc, name asc;
+
 
 
 
