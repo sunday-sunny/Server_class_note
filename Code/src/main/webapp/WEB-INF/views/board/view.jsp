@@ -47,6 +47,7 @@
 			<div class="btns">
 				<input type="button" value="돌아가기"
 					class="btn btn-default"
+
 					onclick="location.href='/code/board/list.do?column=${column}&word=${word}&page=${page}';">
 				
 				<c:if test="${not empty id}">

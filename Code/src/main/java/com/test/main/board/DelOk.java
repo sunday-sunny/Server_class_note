@@ -28,12 +28,13 @@ public class DelOk extends HttpServlet {
 		
 		// 3.
 		BoardDAO dao = new BoardDAO();
-		
+
 		// 3-1. 현재 글에 달린 댓글 삭제하기
 		dao.delCommentAll(seq);
 		
 		// 3-2. 게시글 삭제
 		int result = dao.del(seq); // 1, 0
+
 		
 		
 		// 4.

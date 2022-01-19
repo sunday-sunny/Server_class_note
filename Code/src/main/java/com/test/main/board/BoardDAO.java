@@ -202,6 +202,7 @@ public class BoardDAO {
 		return 0;
 	}
 	
+
 	// AddCommentOk 서블릿이 CommentDTO를 줄테니 insert 해주세요
 	public int addComment(CommentDTO cdto) {
 		
@@ -370,6 +371,7 @@ public class BoardDAO {
 	
 	
 	
+
 }
 
 
