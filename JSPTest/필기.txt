@@ -207,6 +207,23 @@ JSP Model 2 + EL + JSTL
 
 - com.test.mvc > "EL.java"
 - webapp > mvc > "el.jsp"
+
+
+/* 20220-01-19(수) Open API */
+네이버 책 검색 API
+- com.test.openapi > "Book.java"(S)"
+- com.test.openapi > "BookDAO.java
+- com.test.openapi > "BookDTO.java
+
+
+- openapi > "book.jsp"(V)"
+
+
+
+
+
+
+
 				
 
 
