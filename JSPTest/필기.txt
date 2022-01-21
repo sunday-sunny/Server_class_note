@@ -219,6 +219,14 @@ JSP Model 2 + EL + JSTL
 - openapi > "book.jsp"(V)"
 
 
+/* 20220-01-20(목) Open API */
+https://apis.map.kakao.com/
+
+지도 Open API
+- com.test.openapi > "Map.java"(S)
+- com.test.openapi > "MapDAO.java"
+- com.test.openapi > "MapDTO.java"
+- openapi > "map.jsp"
 
 
 
