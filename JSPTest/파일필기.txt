@@ -1,0 +1,19 @@
+/* 2022-01-21(금) 파일 예제 */
+- "com.test.file" > "FileTest.java(S)"
+- views > "file" > "filetest.jsp"	// 업로드 폼 페이지
+
+- "com.test.file" > "FileTestOk.java(S)"
+- views > "file" > "filetestok.jsp" // 업로드 처리 페이지
+
+- 파일 업로드 라이브러리 > cos.jar
+
+
+게시판(서비스) 파일 첨부
+1. DB > Table
+	- 컬럼 추가
+		- filename 컬럼
+		- orgfilename 컬럼
+2. 첨부 파일 저장 폴더 생성
+	- webapp > files
+3. 업로드 페이지 구현	> add.do
+4. 다운로드 페이지 구현 > view.do
