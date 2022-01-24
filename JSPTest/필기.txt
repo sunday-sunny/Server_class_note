@@ -267,7 +267,8 @@ Ajax가 뭡니까?
 - "AjaxDAO.JAVA AjaxDTO.JAVA
 
 
-
+- com.test.ajax > "Ex03.java", "Ex03Data.java"
+- ajax > "ex03.jsp"
 				
 
 
