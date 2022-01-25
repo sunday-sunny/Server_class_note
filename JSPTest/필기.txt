@@ -267,13 +267,32 @@ Ajax가 뭡니까?
 - "AjaxDAO.JAVA AjaxDTO.JAVA
 
 
+/* 2022-01-24(월) */
 - com.test.ajax > "Ex03.java", "Ex03Data.java"
 - ajax > "ex03.jsp"
+	
+	
 				
 
+/* 2022-01-25(화) */
+- 일반 웹페이지
+- com.test.ajax > "Ex04.java(S)"
+- ajax > "ex04.jsp"
 
 
+Ajax 처리 페이지
+- com.test.ajax > "Ex04Data.java"
 
+
+jQuery UI + Ajax
+- com.test.ajax > "Ex05.java(S)"
+- ajax > "ex05.jsp"
+- com.test.ajax > "Ex05Data.java(S)"
+
+
+- com.test.ajax > "Ex06.java(S)"
+- ajax > "ex06.jsp"
+- com.test.ajax > "Ex06Data.java(S)"
 
 
 
