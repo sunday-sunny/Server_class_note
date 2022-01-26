@@ -251,4 +251,35 @@ public class AjaxDAO {
 		return 0;
 	}
 
+	public ArrayList<BoardDTO> listBoard(int begin) {
+		
+		try {
+			String sql = "select * from ("
+					+ "select a.*, rownum as rnum from (select * from vwBoard order by thread desc) a) where rnum between ? and ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setInt(1, begin);
+			pstat.setInt(2, begin+2);
+			rs = pstat.executeQuery();
+			
+			ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+			
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setName(rs.getString("name"));
+				dto.setId(rs.getString("id"));
+				dto.setRegdate(rs.getString("regdate"));
+				list.add(dto);
+			}
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.listBoard()");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

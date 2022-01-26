@@ -297,4 +297,10 @@ jQuery UI + Ajax
 
 
 
+/* 2022-01-26(수) */
+- com.test.ajax > "Ex07.java(S)"
+- ajax > "ex07.jsp"
+- com.test.ajax > "Ex07Data.java(S)"
+
+
 
